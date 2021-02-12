@@ -91,3 +91,7 @@ dependencies.lock
 
 # real configuration file
 */Kconfig.projbuild
+
+build/
+sdkconfig
+sdkconfig.old
