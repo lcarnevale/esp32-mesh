@@ -209,9 +209,9 @@ void setup(void) {
     esp_log_level_set("mupgrade_root", ESP_LOG_DEBUG);
     esp_log_level_set(TAG, ESP_LOG_DEBUG);
     
+    char *sta_mac_addr = get_mac_address(ESP_MAC_WIFI_STA);
     MDF_ERROR_ASSERT(wifi_init());
     MDF_ERROR_ASSERT(mesh_init());
-    MDF_ERROR_ASSERT(get_sta_mac_address());
 }
 
 void start(void) {
