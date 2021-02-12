@@ -21,15 +21,25 @@ GPATH
 # MacOS directory files
 .DS_Store
 
+# Project files
+build/
+sdkconfig
+sdkconfig.old
+
+# Main project files
+main/**/Kconfig.projbuild
+
 # Components Unit Test Apps files
 components/**/build
 components/**/sdkconfig
 components/**/sdkconfig.old
+components/**/Kconfig.projbuild
 
 # Example project files
+examples/**/build
 examples/**/sdkconfig
 examples/**/sdkconfig.old
-examples/**/build
+examples/**/Kconfig.projbuild
 
 # Doc build artifacts
 docs/_build/
@@ -83,15 +93,5 @@ cmake-build-*/
 .mypy_cache
 flake8_output.txt
 
-# ESP-IDF default build directory name
-build
-
 # lock files for examples and components
 dependencies.lock
-
-# real configuration file
-*/Kconfig.projbuild
-
-build/
-sdkconfig
-sdkconfig.old
