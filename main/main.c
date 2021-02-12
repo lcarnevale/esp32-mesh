@@ -6,22 +6,17 @@
  * @maintainer: Lorenzo Carnevale <lcarnevale@unime.it>
  */
 
-#include "mlink.h"
 #include "mwifi.h"
 #include "mupgrade.h"
 #include "mprotocol.h"
 #include "msntp.h"
 #include "esp_log.h"
 #include "mqtt_manager.h"
+#include "metadata.h"
 
-
-#define SIZE_MAC_ADDR 18
 
 static const char *TAG = "MESH";
-static const char *MDF_VERSION = mdf_get_version();
-
 static bool is_connected = false;
-char sta_mac_addr[SIZE_MAC_ADDR] = {0};
 
 
 static void root_reader_task(void *arg) {
@@ -205,15 +200,6 @@ static mdf_err_t mesh_init() {
     MDF_ERROR_ASSERT(mwifi_init(&cfg));
     MDF_ERROR_ASSERT(mwifi_set_config(&config));
 
-    return MDF_OK;
-}
-
-static mdf_err_t get_sta_mac_address() {
-    uint8_t derived_mac_addr[6] = {0};
-    ESP_ERROR_CHECK(esp_read_mac(derived_mac_addr, ESP_MAC_WIFI_STA));
-    snprintf(sta_mac_addr, 18, "%x:%x:%x:%x:%x:%x",
-             derived_mac_addr[0], derived_mac_addr[1], derived_mac_addr[2],
-             derived_mac_addr[3], derived_mac_addr[4], derived_mac_addr[5]);
     return MDF_OK;
 }
 
