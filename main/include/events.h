@@ -14,6 +14,14 @@
 
 static bool is_connected = false;
 
+mdf_err_t __event_mesh_parent_connected(void);
+mdf_err_t __event_mesh_parent_disconnected(void);
+mdf_err_t __event_mesh_root_got_ip(void);
+mdf_err_t __event_mesh_root_got_ip(void);
+mdf_err_t __event_mesh_root_lost_ip(void);
+mdf_err_t __event_mesh_mupgrade_started(void);
+mdf_err_t event_mesh_callback(mdf_event_loop_t event, void *ctx);
+
 
 /**
  * @brief All module events will be sent to this task in esp-mdf
