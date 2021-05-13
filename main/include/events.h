@@ -61,6 +61,7 @@ mdf_err_t __event_mesh_parent_connected(void) {
     run_node_reader_task();
     if ( node_is_root() )
         run_root_reader_task();
+    // run_node_executer_tasks();
     return MDF_OK;
 }
 
@@ -76,6 +77,7 @@ mdf_err_t __event_mesh_root_got_ip(void) {
         setup_sntp();
         sync_sntp();
         mqtt_connect();
+        run_node_executer_tasks(); // no way, lancia solo se root
         is_connected = true;
     }
     return MDF_OK;

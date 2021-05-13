@@ -11,9 +11,7 @@
 
 #include "protocols.h"
 #include "mqtt_manager.h"
-
-
-static const char *TAG = "MESH";
+#include "powermanager.h"
 
 
 static void root_reader_task(void *arg) {
@@ -108,4 +106,10 @@ void run_root_reader_task(void) {
     MDF_LOGD("Running root task ...");
     char* pcName = "root_reader_task";
     xTaskCreate(root_reader_task, pcName, 4*1024, NULL, CONFIG_MDF_TASK_DEFAULT_PRIOTY, NULL);
+}
+
+void run_node_executer_tasks(void) {
+    // Running INA219 task
+    powermanager_setup();
+    powermanager_start();
 }
