@@ -10,8 +10,10 @@
 
 
 #include "protocols.h"
-#include "mqtt_manager.h"
-#include "powermanager.h"
+// #include "mqtt_manager.h"
+// #include "powermanager.h"
+
+// static const char *TAG = "LOGIC";
 
 
 static void root_reader_task(void *arg) {
@@ -37,7 +39,7 @@ static void root_reader_task(void *arg) {
         } else if (data_type.custom == MQTT_SEND) {
             MDF_LOGD("Receive MQTT_SEND packet from [NODE] addr: " MACSTR ", size: %d, data: %s", MAC2STR(src_addr), size, data);
             snprintf(mqtt_buffer, size, "%.*s", strlen(data), data);
-            mqtt_publish(mqtt_buffer);
+            // mqtt_publish(mqtt_buffer);
         } else {
             MDF_LOGW("Receive UNKNOWN packet from [NODE] addr: " MACSTR ", size: %d, data: %s", MAC2STR(src_addr), size, data);
         }
@@ -110,6 +112,6 @@ void run_root_reader_task(void) {
 
 void run_node_executer_tasks(void) {
     // Running INA219 task
-    powermanager_setup();
-    powermanager_start();
+    // powermanager_setup();
+    // powermanager_start();
 }

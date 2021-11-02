@@ -39,15 +39,17 @@ static mdf_err_t wifi_init() {
 static mdf_err_t mesh_init() {
     mwifi_init_config_t cfg = MWIFI_INIT_CONFIG_DEFAULT();
     mwifi_config_t config   = {
-        .router_ssid     = CONFIG_ROUTER_SSID,
-        .router_password = CONFIG_ROUTER_PASSWORD,
+        // .router_ssid     = CONFIG_ROUTER_SSID,
+        // .router_password = CONFIG_ROUTER_PASSWORD,
+        .channel         = CONFIG_MESH_CHANNEL,
         .mesh_id         = CONFIG_MESH_ID,
+        .mesh_type       = CONFIG_DEVICE_TYPE,
     };
 
     MDF_ERROR_ASSERT(mdf_event_loop_init(event_mesh_callback));
     MDF_ERROR_ASSERT(mwifi_init(&cfg));
     MDF_ERROR_ASSERT(mwifi_set_config(&config));
-
+    
     return MDF_OK;
 }
 

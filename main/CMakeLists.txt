@@ -6,6 +6,5 @@ set(COMPONENT_REQUIRES
     mwifi 
     mlink 
     mqtt_manager 
-    ina219 
 )
 register_component()
