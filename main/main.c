@@ -39,11 +39,12 @@ static mdf_err_t wifi_init() {
 static mdf_err_t mesh_init() {
     mwifi_init_config_t cfg = MWIFI_INIT_CONFIG_DEFAULT();
     mwifi_config_t config   = {
-        // .router_ssid     = CONFIG_ROUTER_SSID,
-        // .router_password = CONFIG_ROUTER_PASSWORD,
-        .channel         = CONFIG_MESH_CHANNEL,
+        .router_ssid     = CONFIG_ROUTER_SSID,
+        .router_password = CONFIG_ROUTER_PASSWORD,
+        // .channel         = CONFIG_MESH_CHANNEL,
         .mesh_id         = CONFIG_MESH_ID,
-        .mesh_type       = CONFIG_DEVICE_TYPE,
+        .mesh_password   = CONFIG_MESH_PASSWORD,
+        // .mesh_type       = CONFIG_DEVICE_TYPE,
     };
 
     MDF_ERROR_ASSERT(mdf_event_loop_init(event_mesh_callback));
@@ -54,10 +55,8 @@ static mdf_err_t mesh_init() {
 }
 
 void setup(void) {
-    esp_log_level_set("*", ESP_LOG_INFO);
-    esp_log_level_set("mupgrade_node", ESP_LOG_DEBUG);
-    esp_log_level_set("mupgrade_root", ESP_LOG_DEBUG);
-    esp_log_level_set(TAG, ESP_LOG_DEBUG);
+    esp_log_level_set("*", ESP_LOG_DEBUG);
+    esp_log_level_set("gpio", ESP_LOG_WARN);
     
     char *sta_mac_addr = get_mac_address(ESP_MAC_WIFI_STA);
     MDF_ERROR_ASSERT(wifi_init());

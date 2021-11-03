@@ -15,22 +15,20 @@ static const char *TAG = "LED";
 
 mdf_err_t led_on(void);
 mdf_err_t led_off(void);
-static void __configure_led(void);
+static void configure_led(void);
 
 static void configure_led(void) {
-    MDF_LOGD("configuring the GPIO LED");
+    MDF_LOGD("Configuring the GPIO LED");
     gpio_reset_pin(LED_GPIO);
     gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
 }
 
 mdf_err_t led_on(void) {
-    configure_led();
     gpio_set_level(LED_GPIO, true);
     return MDF_OK;
 }
 
 mdf_err_t led_off(void) {
-    configure_led();
     gpio_set_level(LED_GPIO, false);
     return MDF_OK;
 }
